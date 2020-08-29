@@ -1,0 +1,15 @@
+/////
+rather than componentDidMount we used componentWillMount
+to ensure that interceptors are set before making get request for 
+fetching the ingredients
+componentDidMount inside errorHandler ran after WrappedComponent was rendered by errorHandler
+so interceptors were not set
+by using componentWillMount interceptors were set inside errorHandler 
+then we made the rendered WrappedComponent then we make get request
+
+// 
+we added componentWillUnmount
+to eject the interceptors to ensure that when we unmount burgerBuilder 
+interceptors are unset otherwise 
+where ever we use withErrorHandler multiple interceptors will stay inside memory 
+so clearing them when they were no longer needed was important
